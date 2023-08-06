@@ -3,7 +3,7 @@ const os = require('node:os')
 console.log('Información del sistema operativo:')
 console.log('-------------------')
 
-console.log('Nombre del sistema operativo ', os.platform() )
+console.log('Nombre del sistema operativo ', os.platform())
 console.log('Versión del sistema operativo ', os.version())
 console.log('Arquitectura ', os.arch())
 console.log('CPU ', os.cpus()) // <-- Vamos a poder escalar procesos en Node

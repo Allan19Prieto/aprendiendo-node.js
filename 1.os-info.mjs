@@ -3,7 +3,7 @@ import { platform, version, arch, cpus, freemem, totalmem, uptime } from 'node:o
 console.log('Información del sistema operativo:')
 console.log('-------------------')
 
-console.log('Nombre del sistema operativo ', platform() )
+console.log('Nombre del sistema operativo ', platform())
 console.log('Versión del sistema operativo ', version())
 console.log('Arquitectura ', arch())
 console.log('CPU ', cpus()) // <-- Vamos a poder escalar procesos en Node
