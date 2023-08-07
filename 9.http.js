@@ -1,4 +1,9 @@
-const http = require('node:http')
+require('dotenv') // require the dotenv/config at beginning of file
+
+const http = require('node:http') // Protocolo HTTP
+const { findAvailablePort } = require('./10.free-port.js')
+
+const desiredProt = process.env.PORT ?? 3000
 
 // Creamos un servidor con un collback
 const server = http.createServer((req, res) => {
@@ -6,6 +11,8 @@ const server = http.createServer((req, res) => {
   res.end('Hola mundo')
 })
 
-server.listen(0, () => {
-  console.log(`Server listening on port http://localhost:${server.address().port}`)
+findAvailablePort(desiredProt).then(port => {
+  server.listen(port, () => {
+    console.log(`server listening on port http://localhost:${port}`)
+  })
 })
