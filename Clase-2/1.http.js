@@ -1,4 +1,5 @@
 const http = require('node:http') // Protocolo HTTP
+const fs = require('node:fs')
 
 const desiredPort = process.env.PORT ?? 1234
 
@@ -6,8 +7,18 @@ const desiredPort = process.env.PORT ?? 1234
 const processReuest = (req, res) => {
   res.setHeader('Content-Type', 'text/html; charset=utf-8')
   if (req.url === '/') {
-    res.statusCode = 200 // ok
-    res.end('<h1>Bienvenido a mi página web Allan Prieto</h1>')
+    // res.statusCode = 200 // ok Si no se pone y todo va bien, por defecto tendra un 200 Ok
+    res.end('<h1>Página</h1>')
+  } else if (res.url === '/imagen') {
+    fs.readFile('./Clase-2/yoda.png', (err, data) => {
+      if (err) {
+        res.statusCode = 500 //
+        res.end('<h1>500 Internal Server Error</h1>')
+      } else {
+        res.setHeader('Content-Type', 'image/png')
+        res.end(data)
+      }
+    })
   } else if (req.url === '/contacto') {
     res.statusCode = 200 // Ok
     res.end('<h1>Contacto</h1>')
