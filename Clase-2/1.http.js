@@ -10,7 +10,7 @@ const processReuest = (req, res) => {
     // res.statusCode = 200 // ok Si no se pone y todo va bien, por defecto tendra un 200 Ok
     res.end('<h1>Página</h1>')
   } else if (res.url === '/imagen') {
-    fs.readFile('./Clase-2/yoda.png', (err, data) => {
+    fs.readFile('./yoda.png', (err, data) => {
       if (err) {
         res.statusCode = 500 //
         res.end('<h1>500 Internal Server Error</h1>')

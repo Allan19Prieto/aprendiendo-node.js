@@ -4,7 +4,8 @@
   "description": "El curso de Midu --> https://www.youtube.com/watch?v=yB4n_K7dZV8",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon Clase-2/1.http.js"
+    "dev:1": "nodemon Clase-2/1.http.js",
+    "dev:2": "nodemon Clase-2/2.routing.js"
   },
   "keywords": [],
   "author": "",
