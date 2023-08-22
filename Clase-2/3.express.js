@@ -5,13 +5,13 @@ const app = express()
 
 app.disable('x-powered-by')
 
-const PORT = process.env.PORT ?? 1234
+app.use(express.json()) // Esta linea hace lo mismo que las lineas comentanadas abajo
 
-app.get('/pokemon/ditto', (req, res) => {
-  res.json(ditto)
-})
+/* app.use((req, res, next) => {
+  if (req.method !== 'POST') return next()
+  if (req.headers['content-type'] !== 'application/json') return next()
 
-app.post('/pokemon', (req, res) => {
+  // solo llegan request que son POST y que  tienen el header Content-Type: application/json
   let body = ''
 
   // escuchar el evento data ; chunck es un buffer
@@ -21,11 +21,21 @@ app.post('/pokemon', (req, res) => {
 
   req.on('end', () => {
     const data = JSON.parse(body)
-    // llamar a una base de datos para guardar la info
-    // res.writeHead(201, { 'Content-Type': 'application/json; charset=utf-8' })
     data.timestamp = Date.now()
-    res.status(201).json(data)
+    // mutar la request y meter la información en el req.body
+    req.body = data
+    next()
   })
+}) */
+
+const PORT = process.env.PORT ?? 1234
+
+app.get('/pokemon/ditto', (req, res) => {
+  res.json(ditto)
+})
+
+app.post('/pokemon', (req, res) => {
+  res.status(201).json(req.body)
 })
 
 app.use((req, res) => {
