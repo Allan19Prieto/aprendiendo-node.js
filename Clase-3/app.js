@@ -11,8 +11,18 @@ const app = express()
 app.use(express.json())
 app.disable('x-powered-by') // desabilitar el header x-powered-By: Express
 
+const ACCEPTED_ORIGINS = [
+  'http://localhost:8080',
+  'http://localhost:1234',
+  'http://localhost:3000'
+]
+
 // Todos los recursos que sean movies se identifican con /movies
 app.get('/movies', (req, res) => {
+  const origin = req.header('origin')
+  if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
+    res.header('Access-Control-Allow-Origin', origin)
+  }
   const { genre } = req.query
   if (genre) {
     const filteredMovies = movies.filter(
@@ -50,6 +60,24 @@ app.post('/movies', (req, res) => {
   res.status(201).json(newMovie) // actualiza la caché del cliente
 })
 
+app.delete('/movies/:id', (req, res) => {
+  const origin = req.header('origin')
+  if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
+    res.header('Access-Control-Allow-Origin', origin)
+  }
+
+  const { id } = req.params
+  const movieIndex = movies.findIndex(movie => movie.id === id)
+
+  if (movieIndex === -1) {
+    return res.status(404).json({ message: 'Movied not found' })
+  }
+
+  movies.splice(movieIndex, 1)
+
+  return res.json({ message: 'Movie deleted' })
+})
+
 app.patch('/movies/:id', (req, res) => {
   const result = validatePartialovie(req.body)
 
@@ -72,6 +100,15 @@ app.patch('/movies/:id', (req, res) => {
   movies[movieIndex] = updateMovie
 
   return res.json(updateMovie)
+})
+
+app.options('/movies/:id', (req, res) => {
+  const origin = req.header('origin')
+  if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
+    res.header('Access-Control-Allow-Origin', origin)
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE')
+  }
+  res.send(200)
 })
 
 const PORT = process.env.PORT = 1234
