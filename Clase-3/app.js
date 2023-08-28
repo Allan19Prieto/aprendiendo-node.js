@@ -4,6 +4,8 @@
 const express = require('express') // require -> commonJS
 const movies = require('./movies.json')
 const crypto = require('node:crypto')
+// const z = require('zod')
+const { validateMovie } = require('./schemas/movies')
 
 const app = express()
 app.use(express.json())
@@ -29,26 +31,17 @@ app.get('/movies/:id', (req, res) => { // path-to-regexp
 })
 
 app.post('/movies', (req, res) => {
-  const {
-    title,
-    year,
-    director,
-    duration,
-    poster,
-    genre,
-    rate
+  const result = validateMovie(req.body)
 
-  } = req.body
+  if (!result.success) {
+    // 422 Unprocessablen Entity
+    return res.status(400).json({ error: JSON.parse(result.error.message) })
+  }
 
+  // Luego en base de datos
   const newMovie = {
     id: crypto.randomUUID(), // UUID v4  Universal unik identifai
-    title,
-    year,
-    director,
-    duration,
-    poster,
-    genre,
-    rate: rate ?? 0
+    ...result.data
   }
 
   // Esto no seria REST, ya que se esta guardando en memoria
