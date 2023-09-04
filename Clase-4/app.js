@@ -5,15 +5,11 @@ import express, { json } from 'express' // require -> commonJS
 import { moviesRouter } from './routes/movies.js'
 import { corsMiddleware } from './middlewares/cors.js'
 
-
 // Como leer un json en ESmodules
 // import fs from 'node:fs'
 // const movies = JSON.parse(fs.readFileSync('./movies.json', 'utf-8'))
 
 // Como leer un json en ESmodules recomendado por ahora
-import { createRequire } from 'node:module'
-const require = createRequire(import.meta.url) // el meta url: tiene info del archivo actual
-const movies = require('./movies.json')
 
 const app = express()
 app.use(json())
