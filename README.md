@@ -19,3 +19,20 @@ cargo --version
 Luego puedes instalar mvm o fnm,
 en mi caso usare fnm --> https://github.com/Schniz/fnm
 ![image](https://github.com/Allan19Prieto/aprendiendo-node.js/assets/47021762/a84aea5f-f64d-48d2-97bd-189c985868f9)
+
+Ver la lista de versiones de node que tienes
+```bash 
+fnm list
+```
+
+Instalar una nueva versión de node
+```bash 
+fnm install <version que se quiere>
+```
+
+Usar una nueva versión de node
+```bash 
+fnm use <version que se quiere usar>
+```
+
+
