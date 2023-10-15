@@ -33,6 +33,10 @@ fnm install <version que se quiere>
 Usar una nueva versión de node
 ```bash 
 fnm use <version que se quiere usar>
+
 ```
-
-
+En caso de tener problemas con las variables de entorno
+y no se reconoce node
+```bash 
+fnm env --use-on-cd | Out-String | Invoke-Expression
+```
