@@ -16,6 +16,10 @@ Ver la versión instalada
 cargo --version
 ```
 
+## Recomendación
+instalar scoop, para intalar el paquete fnm de una forma mas simple en windows
+![image](https://tecnonucleous.com/2021/05/23/como-instalar-scoop-en-windows/)
+
 Luego puedes instalar mvm o fnm,
 en mi caso usare fnm --> https://github.com/Schniz/fnm
 ![image](https://github.com/Allan19Prieto/aprendiendo-node.js/assets/47021762/a84aea5f-f64d-48d2-97bd-189c985868f9)
