@@ -17,8 +17,12 @@ cargo --version
 ```
 
 ## Recomendación
-instalar scoop, para intalar el paquete fnm de una forma mas simple en windows
-![image](https://tecnonucleous.com/2021/05/23/como-instalar-scoop-en-windows/)
+instalar scoop, para intalar el paquete fnm de una forma mas simple en windows 
+Puede seguir el siguiente post --> https://tecnonucleous.com/2021/05/23/como-instalar-scoop-en-windows/
+
+```bash 
+scoop install fnm
+```
 
 Luego puedes instalar mvm o fnm,
 en mi caso usare fnm --> https://github.com/Schniz/fnm
